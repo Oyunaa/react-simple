@@ -1,24 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Main from "./components/Main";
 
 function App() {
+  const data = {
+    welcome: "Welcome to component and props corner",
+    title: "React",
+    subtitle: "Javascript Library",
+    user: {
+      firstname: "John",
+      lastname: "Sedrick",
+    },
+    techskill: ["HTML", "JS", "CSS", "React"],
+    date: new Date(),
+  };
+
+  const greetPeople = () => {
+    alert("Welcome to my corner");
+  };
+  const showDate = () => {
+    let date = new Date();
+
+    alert(formatDate(date));
+  };
+
+  const formatDate = (date) => {
+    let str = `${date.getFullYear()} - ${date.getMonth()} - ${date.getDate()}`;
+    return str;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container">
+        <Header
+          welcome={data.welcome}
+          title={data.title}
+          subtitle={data.subtitle}
+        />
+        <Main
+          user={data.user}
+          techs={data.techskill}
+          greetPeople={greetPeople}
+          showDate={showDate}
+        />
+
+        <Footer date={data.date} />
+      </div>
+    </>
   );
 }
 
